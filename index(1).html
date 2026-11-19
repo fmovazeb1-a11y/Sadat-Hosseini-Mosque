@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b3f">
+<title>سامانه مسجد سادات حسینی</title>
+<style>
+:root{--bg:#f3f6f8;--card:#fff;--ink:#172b3a;--muted:#6b7c89;--navy:#102b3f;--blue:#176b87;--teal:#1b8a78;--line:#e4ebef;--gold:#c49a42;--danger:#b94b4b;--shadow:0 12px 35px #102b3f0d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.7}
+body:before{content:"مسجد سادات حسینی     مسجد سادات حسینی     مسجد سادات حسینی     مسجد سادات حسینی";position:fixed;inset:-30px;z-index:-1;pointer-events:none;opacity:.035;font-size:24px;font-weight:bold;line-height:5;transform:rotate(-18deg);word-spacing:24px}
+header{background:linear-gradient(125deg,#102b3f,#17617a);color:#fff;padding:25px 18px 22px}
+.wrap{max-width:1080px;margin:auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand h1{font-size:clamp(22px,4vw,32px);margin:0}.brand p{margin:5px 0 0;color:#d5e7ee;font-size:13px}
+.pill{border:1px solid #ffffff55;border-radius:999px;padding:7px 12px;font-size:12px;color:#e9f5f7}
+nav{display:flex;gap:8px;overflow:auto;padding:16px 0 0}
+nav button,.btn{border:0;border-radius:11px;padding:10px 14px;font:inherit;cursor:pointer}
+nav button{background:#ffffff18;color:#e9f5f7;white-space:nowrap}
+nav button.active{background:#fff;color:var(--navy);font-weight:bold}
+main{padding:24px 0 40px}
+.notice{background:#fff8e9;border:1px solid #f0dfb9;color:#765a20;padding:12px 14px;border-radius:13px;font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:17px;box-shadow:var(--shadow)}
+.stat small{color:var(--muted)}.stat strong{display:block;font-size:29px;margin-top:5px;color:var(--navy)}
+.section{margin-top:18px}.section h2{font-size:19px;margin:0 0 12px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.muted{color:var(--muted);font-size:13px}
+.btn{background:var(--navy);color:#fff}.btn.secondary{background:#eaf1f4;color:var(--navy)}.btn.teal{background:var(--teal)}.btn.danger{background:var(--danger)}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:right;padding:11px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:normal}
+input,select{width:100%;padding:11px 12px;border:1px solid #d8e2e8;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
+.actions{display:flex;gap:7px;flex-wrap:wrap}
+.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px 10px}
+.empty{padding:25px;text-align:center;color:var(--muted)}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}.card{padding:14px}table{font-size:12px}th,td{padding:9px 5px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="top">
+   <div class="brand"><h1>مسجد سادات حسینی</h1><p>سامانه حضور و غیاب و امتیازات اعضا</p></div>
+   <span class="pill">نسخه آزمایشی رابط کاربری</span>
+  </div>
+  <nav id="tabs">
+   <button class="active" data-page="home">داشبورد</button>
+   <button data-page="members">اعضا</button>
+   <button data-page="attendance">حضور و غیاب</button>
+   <button data-page="points">امتیازات</button>
+   <button data-page="manage">مدیریت</button>
+  </nav>
+ </div>
+</header>
+<main class="wrap">
+ <div class="notice"><b>توجه:</b> این نسخه فقط نمونه اولیه است. اطلاعات فعلاً در همین مرورگر ذخیره می‌شود و رمز مدیریتِ داخل این نمونه امنیت واقعی ندارد. تا اتصال دیتابیس و احراز هویت امن، اطلاعات واقعی اعضا را وارد نکنید.</div>
+ <section id="home" class="page">
+  <div class="grid">
+   <div class="card stat"><small>تعداد اعضا</small><strong id="sMembers">۳</strong></div>
+   <div class="card stat"><small>حاضرین امروز</small><strong id="sPresent">۰</strong></div>
+   <div class="card stat"><small>مجموع امتیازها</small><strong id="sPoints">۰</strong></div>
+   <div class="card stat"><small>برنامه‌های ثبت‌شده</small><strong>۰</strong></div>
+  </div>
+  <div class="section card"><div class="row"><h2>رتبه‌بندی اعضا</h2><span class="muted">بر اساس امتیاز</span></div><div id="leaderboard"></div></div>
+ </section>
+ <section id="members" class="page hidden">
+  <div class="card"><div class="row"><div><h2>فهرست اعضا</h2><div class="muted">اطلاعات نمایشی نسخه آزمایشی</div></div></div><div id="membersTable"></div></div>
+ </section>
+ <section id="attendance" class="page hidden">
+  <div class="card"><h2>گزارش حضور و غیاب</h2><p class="muted">در این نمونه، فقط مدیر می‌تواند وضعیت حضور را ثبت کند.</p><div id="attendanceTable"></div></div>
+ </section>
+ <section id="points" class="page hidden">
+  <div class="card"><h2>امتیازات اعضا</h2><p class="muted">نمایش عمومی؛ تغییر امتیاز فقط از بخش مدیریت انجام می‌شود.</p><div id="pointsTable"></div></div>
+ </section>
+ <section id="manage" class="page hidden">
+  <div id="locked" class="card">
+   <h2>ورود به مدیریت</h2><p class="muted">برای افزودن عضو، ثبت حضور و تغییر امتیاز، رمز مدیر را وارد کنید.</p>
+   <div style="max-width:360px"><div class="field"><label for="pin">رمز چهاررقمی آزمایشی</label><input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="رمز را وارد کنید"></div><div class="actions" style="margin-top:12px"><button class="btn" id="unlock">ورود</button></div><p id="pinError" class="muted"></p></div>
+  </div>
+  <div id="adminPanel" class="hidden">
+   <div class="card"><div class="row"><div><h2>پنل مدیریت</h2><p class="muted">دسترسی مدیریتی در این نسخه صرفاً نمایشی است.</p></div><button class="btn secondary" id="logout">خروج از مدیریت</button></div></div>
+   <div class="section card"><h2>افزودن عضو</h2><div class="formgrid"><div class="field"><label>نام عضو</label><input id="newName" placeholder="مثلاً علی رضایی"></div><div class="field"><label>امتیاز اولیه</label><input id="newPoints" type="number" value="0"></div></div><button class="btn teal" id="addMember" style="margin-top:12px">افزودن عضو</button></div>
+   <div class="section card"><h2>ثبت حضور و غیاب</h2><div class="formgrid"><div class="field"><label>عضو</label><select id="attMember"></select></div><div class="field"><label>وضعیت</label><select id="attStatus"><option value="حاضر">حاضر</option><option value="غایب">غایب</option><option value="با اجازه">با اجازه</option></select></div></div><button class="btn teal" id="saveAttendance" style="margin-top:12px">ثبت وضعیت</button></div>
+   <div class="section card"><h2>تغییر امتیاز</h2><div class="formgrid"><div class="field"><label>عضو</label><select id="pointMember"></select></div><div class="field"><label>مقدار تغییر (مثبت یا منفی)</label><input id="pointDelta" type="number" placeholder="مثلاً ۵ یا ۲-"></div><div class="field"><label>دلیل تغییر</label><input id="pointReason" placeholder="مثلاً همکاری در برنامه"></div></div><button class="btn teal" id="savePoints" style="margin-top:12px">ثبت تغییر امتیاز</button></div>
+   <div class="section card"><h2>حذف عضو</h2><div class="formgrid"><div class="field"><label>عضو</label><select id="deleteMember"></select></div></div><button class="btn danger" id="removeMember" style="margin-top:12px">حذف عضو انتخاب‌شده</button></div>
+  </div>
+ </section>
+</main>
+<footer>ساخته شده توسط گروهک سپیدار · مسجد سادات حسینی</footer>
+<script>
+const DEMO_PIN = "1111"; // فقط برای نمونه اولیه؛ برای نسخه واقعی از احراز هویت سمت سرور استفاده شود.
+const starter = [
+ {id:1,name:"عضو نمونه یک",points:25,attendance:"ثبت نشده"},
+ {id:2,name:"عضو نمونه دو",points:18,attendance:"ثبت نشده"},
+ {id:3,name:"عضو نمونه سه",points:10,attendance:"ثبت نشده"}
+];
+let members;
+try { members = JSON.parse(localStorage.getItem("sadathosseini_members")) || starter; } catch(e) { members = starter; }
+let historyRows = [];
+try { historyRows = JSON.parse(localStorage.getItem("sadathosseini_history")) || []; } catch(e) {}
+let isAdmin = false;
+const fa = n => Number(n).toLocaleString("fa-IR");
+function save(){localStorage.setItem("sadathosseini_members",JSON.stringify(members));localStorage.setItem("sadathosseini_history",JSON.stringify(historyRows));render();}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function table(rows,headers){return `<div style="overflow:auto"><table><thead><tr>${headers.map(x=>`<th>${x}</th>`).join("")}</tr></thead><tbody>${rows||""}</tbody></table></div>`;}
+function render(){
+ document.getElementById("sMembers").textContent=fa(members.length);
+ document.getElementById("sPresent").textContent=fa(members.filter(m=>m.attendance==="حاضر").length);
+ document.getElementById("sPoints").textContent=fa(members.reduce((a,m)=>a+Number(m.points||0),0));
+ const sorted=[...members].sort((a,b)=>b.points-a.points);
+ document.getElementById("leaderboard").innerHTML=sorted.length?table(sorted.map((m,i)=>`<tr><td>${fa(i+1)}</td><td>${esc(m.name)}</td><td>${fa(m.points)} امتیاز</td></tr>`).join(""),["رتبه","نام عضو","امتیاز"]):'<div class="empty">هنوز عضوی ثبت نشده است.</div>';
+ document.getElementById("membersTable").innerHTML=members.length?table(members.map(m=>`<tr><td>${esc(m.name)}</td><td>${fa(m.points)}</td></tr>`).join(""),["نام عضو","امتیاز"]):'<div class="empty">عضوی ثبت نشده است.</div>';
+ document.getElementById("pointsTable").innerHTML=members.length?table(sorted.map(m=>`<tr><td>${esc(m.name)}</td><td>${fa(m.points)}</td></tr>`).join(""),["نام عضو","امتیاز کل"]):'<div class="empty">اطلاعاتی وجود ندارد.</div>';
+ document.getElementById("attendanceTable").innerHTML=members.length?table(members.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.attendance||"ثبت نشده")}</td></tr>`).join(""),["نام عضو","آخرین وضعیت"]):'<div class="empty">اطلاعاتی وجود ندارد.</div>';
+ ["attMember","pointMember","deleteMember"].forEach(id=>{const el=document.getElementById(id),old=el.value;el.innerHTML=members.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join("");if([...el.options].some(o=>o.value===old))el.value=old;});
+}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active",x===b));document.querySelectorAll(".page").forEach(p=>p.classList.toggle("hidden",p.id!==b.dataset.page));}));
+document.getElementById("unlock").onclick=()=>{if(document.getElementById("pin").value===DEMO_PIN){isAdmin=true;document.getElementById("locked").classList.add("hidden");document.getElementById("adminPanel").classList.remove("hidden");document.getElementById("pinError").textContent="";}else document.getElementById("pinError").textContent="رمز واردشده درست نیست.";};
+document.getElementById("logout").onclick=()=>{isAdmin=false;document.getElementById("adminPanel").classList.add("hidden");document.getElementById("locked").classList.remove("hidden");document.getElementById("pin").value="";};
+document.getElementById("addMember").onclick=()=>{const name=document.getElementById("newName").value.trim(),points=Number(document.getElementById("newPoints").value||0);if(!name)return alert("نام عضو را وارد کن.");members.push({id:Date.now(),name,points,attendance:"ثبت نشده"});document.getElementById("newName").value="";save();};
+document.getElementById("saveAttendance").onclick=()=>{const m=members.find(x=>x.id==document.getElementById("attMember").value);if(!m)return;m.attendance=document.getElementById("attStatus").value;historyRows.push({type:"حضور و غیاب",name:m.name,value:m.attendance,date:new Date().toLocaleString("fa-IR")});save();alert("وضعیت ثبت شد.");};
+document.getElementById("savePoints").onclick=()=>{const m=members.find(x=>x.id==document.getElementById("pointMember").value),delta=Number(document.getElementById("pointDelta").value),reason=document.getElementById("pointReason").value.trim();if(!m||!Number.isFinite(delta)||!delta||!reason)return alert("عضو، مقدار تغییر و دلیل را کامل وارد کن.");m.points=Number(m.points)+delta;historyRows.push({type:"تغییر امتیاز",name:m.name,value:(delta>0?"+":"")+delta,reason,date:new Date().toLocaleString("fa-IR")});document.getElementById("pointDelta").value="";document.getElementById("pointReason").value="";save();alert("امتیاز به‌روزرسانی شد.");};
+document.getElementById("removeMember").onclick=()=>{const id=Number(document.getElementById("deleteMember").value),m=members.find(x=>x.id===id);if(!m)return;if(!confirm("عضو «"+m.name+"» حذف شود؟"))return;members=members.filter(x=>x.id!==id);save();};
+render();
+</script>
+</body>
+</html>
